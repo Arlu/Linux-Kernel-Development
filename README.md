@@ -1,4 +1,4 @@
-# Linux-Kernel-Development
+# Linux Kernel Development
 
 This is a complete guide, which walks through the complete process of building updated versions of a custom Linux kernel with BusyBox, creating an initramfs, and booting it using QEMU. This is useful for kernel development, testing, and learning about Linux internals.
 
