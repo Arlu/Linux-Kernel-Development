@@ -68,6 +68,9 @@ Navigate to the Linux source directory and build the kernel:
 # Extract some version (we use 5.15):
 tar -xf linux-5.15.183.tar.xz
 cd linux-5.15.183
+# Or with version 6.14.7:
+tar -xf linux-6.14.7.tar.xz
+cd linux-6.14.7
 
 # Set the cross-compiler (if you're compiling on x86_64 for x86_64)
 export CROSS_COMPILE=x86_64-linux-gnu-
@@ -81,7 +84,7 @@ make -j$(nproc)
 # Verify the kernel image is created
 ls arch/x86/boot/bzImage
 
-# Make headers for using with BusyBox later:
+# Make headers for using with BusyBox later (skip for 6.8 and later):
 make headers_install INSTALL_HDR_PATH=~/headers/linux-5.15
 
 # Back to home folder:
@@ -100,9 +103,6 @@ cd busybox-1.36.1
 # Install required ncurses libraries if missing
 # sudo apt-get install libncurses5-dev libncursesw5-dev
 
-# Fix the dialog Makefile issue by commenting out a line
-sed -i 's/\(always         := $(hostprogs-y) dochecklxdialog\)/#\1/' scripts/kconfig/lxdialog/Makefile
-
 # Create a default configuration
 make defconfig
 
@@ -111,8 +111,12 @@ make menuconfig
 # In the menuconfig interface:
 # Navigate to "Settings" → Find "Build static binary (no shared libs)"
 # Press 'Y' to enable it
+# (For 6.7 and earlier)
 # Then navigate to "() Additional CFLAGS"
 # Press enter, then add: -I/home/arie/headers/linux-5.15/include/
+# (For 6.8 and later)
+# Just disable some, press esc, then navigate to "Networking Utilities" → Find "tc (8.3 kb)"
+# Press 'N' to disable it (because it isn't support by these kernels for now)
 # Exit and save the configuration
 
 # Build BusyBox
@@ -189,6 +193,9 @@ sudo apt-get install qemu-system-x86 qemu-utils
 # Start QEMU with your kernel and initramfs
 cd ~/images/
 qemu-system-x86_64 -kernel ~/linux-5.15.183/arch/x86/boot/bzImage -initrd initramfs.cpio.gz -append "console=ttyS0 nokaslr" -nographic -m 512M
+# Or:
+qemu-system-x86_64 -kernel ~/linux-6.14.7/arch/x86/boot/bzImage -initrd initramfs.cpio.gz -append "console=ttyS0 nokaslr" -nographic -m 512M
+
 ```
 
 ## 7. Working with Your Custom Linux System
