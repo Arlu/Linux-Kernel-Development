@@ -32,13 +32,13 @@ Download Linux kernels using wget:
 
 ```bash
 # Latest stable for now:
-wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.14.7.tar.xz
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.16.tar.xz
 # Latest LTS for now:
-wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.29.tar.xz
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.40.tar.xz
 # LTS 6.6 (6.8+ have some problem with BusyBox for now [1.36.1 and 1.37.0])
-wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.91.tar.xz
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.6.100.tar.xz
 # LTS 5.15:
-wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.183.tar.xz
+wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.189.tar.xz
 ```
 
 And BusyBox:
@@ -66,11 +66,11 @@ Navigate to the Linux source directory and build the kernel:
 
 ```bash
 # Extract some version (we use 5.15):
-tar -xf linux-5.15.183.tar.xz
-cd linux-5.15.183
-# Or with version 6.14.7:
-tar -xf linux-6.14.7.tar.xz
-cd linux-6.14.7
+tar -xf linux-5.15.189.tar.xz
+cd linux-5.15.189
+# Or with version 6.16:
+tar -xf linux-6.16.tar.xz
+cd linux-6.16
 
 # Set the cross-compiler (if you're compiling on x86_64 for x86_64)
 export CROSS_COMPILE=x86_64-linux-gnu-
