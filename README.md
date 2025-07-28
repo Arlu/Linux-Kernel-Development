@@ -192,9 +192,9 @@ sudo apt-get install qemu-system-x86 qemu-utils
 
 # Start QEMU with your kernel and initramfs
 cd ~/images/
-qemu-system-x86_64 -kernel ~/linux-5.15.183/arch/x86/boot/bzImage -initrd initramfs.cpio.gz -append "console=ttyS0 nokaslr" -nographic -m 512M
+qemu-system-x86_64 -kernel ~/linux-5.15.189/arch/x86/boot/bzImage -initrd initramfs.cpio.gz -append "console=ttyS0 nokaslr" -nographic -m 512M
 # Or:
-qemu-system-x86_64 -kernel ~/linux-6.14.7/arch/x86/boot/bzImage -initrd initramfs.cpio.gz -append "console=ttyS0 nokaslr" -nographic -m 512M
+qemu-system-x86_64 -kernel ~/linux-6.16/arch/x86/boot/bzImage -initrd initramfs.cpio.gz -append "console=ttyS0 nokaslr" -nographic -m 512M
 
 ```
 
