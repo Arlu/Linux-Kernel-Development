@@ -1,5 +1,5 @@
-FS_NAME=$1
-KRNL_NAME=default # ${$2:-"default"}
+FS_NAME=lab02
+KRNL_NAME=lab02
 
 # Test in QEMU
 qemu-system-x86_64 \
