@@ -1,1 +1,0 @@
-savedcmd_task_monitor.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T /home/arie/linux-6.16/scripts/module.lds -o task_monitor.ko task_monitor.o task_monitor.mod.o .module-common.o

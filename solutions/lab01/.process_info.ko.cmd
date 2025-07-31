@@ -1,1 +1,0 @@
-savedcmd_process_info.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T /home/arie/linux-6.16/scripts/module.lds -o process_info.ko process_info.o process_info.mod.o .module-common.o

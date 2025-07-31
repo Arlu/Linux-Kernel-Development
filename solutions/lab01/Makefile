@@ -8,6 +8,7 @@ sched_test: sched_test.c
 # Kernel module variables
 obj-m += process_info.o
 obj-m += task_monitor.o
+obj-m += change_priority.o
 
 # Kernel module build variables
 # Path to the kernel source used by QEMU
@@ -43,11 +44,13 @@ clean:
 install: modules
 	insmod process_info.ko
 	insmod task_monitor.ko pid=1
+	insmod change_priority.ko
 
 # Remove module (requires root privileges)
 uninstall:
 	rmmod task_monitor
 	rmmod process_info
+	rmmod change_priority
 
 # Targets that aren't file names
 .PHONY: all modules programs clean install uninstall
