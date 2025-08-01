@@ -1,6 +1,6 @@
 # Setup
 export INSTALL_PATH=/tmp/initramfs_new
-export INITRAMFS_ORIG=~/images/initramfs.cpio.gz
+export INITRAMFS_ORIG=~/images/initramfs_libc.cpio.gz
 export LAB_DIR=$PWD
 export FS_NAME=lab02
 

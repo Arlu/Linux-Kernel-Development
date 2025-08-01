@@ -187,7 +187,7 @@ SYSCALL_DEFINE2(reverse_string, char __user *, str, size_t, len)
 grep hello_user arch/x86/entry/syscalls/syscall_64.tbl
 
 # Verify syscall number
-grep __NR_hello_user arch/x86/include/generated/asm/unistd_64.h
+grep __NR_hello_user arch/x86/include/generated/uapi/asm/unistd_64.h
 
 # Monitor kernel logs
 dmesg -w
