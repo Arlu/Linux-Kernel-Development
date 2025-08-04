@@ -4,7 +4,7 @@ export CROSS_COMPILE=x86_64-linux-gnu-
 KERNEL_SRC=~/linux-6.16
 KDIR ?= $(KERNEL_SRC)
 INSTALL_PATH ?= /tmp/initramfs_class3
-INITRAMFS_ORIG=~/images/initramfs_class3.cpio.gz
+INITRAMFS_ORIG=~/images/initramfs.cpio.gz
 CFLAGS = -m32 -Wall -Wextra -g
 
 # Kernel module
