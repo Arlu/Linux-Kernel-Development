@@ -5,35 +5,19 @@ KERNEL_SRC=~/linux-6.16
 KDIR ?= $(KERNEL_SRC)
 INSTALL_PATH ?= /tmp/initramfs_new
 INITRAMFS_ORIG=~/images/initramfs.cpio.gz
-CFLAGS = -m32 -Wall -Wextra -g
 
-# Kernel module
-obj-m += netlink_example.o
 
-# User space program
-USER_PROG = netlink_test
+obj-m += spinlock_demo.o
 
-all: modules $(USER_PROG)
-
-modules:
+all:
 	$(MAKE) -C $(KDIR) M=$(PWD) modules
-
-$(USER_PROG): netlink_test.c
-	$(CC) -o $(USER_PROG) netlink_test.c
 
 clean:
 	$(MAKE) -C $(KDIR) M=$(PWD) clean
-	rm -f $(USER_PROG)
 
 install:
 	mkdir -p $(INSTALL_PATH)/lib/modules
 	cp *.ko $(INSTALL_PATH)/lib/modules
-	mkdir -p  $(INSTALL_PATH)/lib64
-	cp /lib64/ld-linux-x86-64.so.2 $(INSTALL_PATH)/lib64/
-	mkdir -p $(INSTALL_PATH)/lib/x86_64-linux-gnu
-	cp /lib/x86_64-linux-gnu/libc.so.6 $(INSTALL_PATH)/lib/x86_64-linux-gnu/
-	mkdir -p $(INSTALL_PATH)/bin
-	cp $(USER_PROG) $(INSTALL_PATH)/bin/
 
 update-initramfs: install
 	@echo "Extracting original initramfs..."
@@ -58,12 +42,28 @@ test-qemu:
 		-nographic \
 		-m 512M
 
-
 test:
-	@echo "Testing netlink interface..."
-	-insmod /lib/modules/netlink_example.ko
-	-./$(USER_PROG)
-	-rmmod netlink_example
-	@echo "Netlink test complete"
+	@echo "Testing ..."
+	# insmod lib/modules/spinlock_demo.ko
 
-.PHONY: all modules clean install test
+	# # Read from procfs interface (triggers spinlock usage)
+	# cat /proc/spinlock_demo
+
+	# # Write to procfs interface (triggers spinlock usage)
+	# echo 5 > /proc/spinlock_demo
+
+	# # Test concurrent access
+	# cat /proc/spinlock_demo &
+	# cat /proc/spinlock_demo &
+	# cat /proc/spinlock_demo &
+	# 
+	@echo " read test complete"
+
+	# # Test concurrent access
+	# echo 6 > /proc/spinlock_demo &
+	# echo 7 > /proc/spinlock_demo &
+	# echo 9 > /proc/spinlock_demo &
+	# 
+	@echo " write test complete"
+
+.PHONY: all clean install test
