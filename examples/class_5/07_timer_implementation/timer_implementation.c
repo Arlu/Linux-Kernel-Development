@@ -86,8 +86,6 @@ static int __init simple_timer_init(void)
     
     // Initialize high-resolution timer:
     hrtimer_setup(&hr_timer, hr_timer_callback, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-    // hrtimer_init(&hr_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-    // hr_timer.function = hr_timer_callback;
     hrtimer_start(&hr_timer, ms_to_ktime(timer_interval_ms), HRTIMER_MODE_REL);
     
     pr_info("Timers started with %d ms interval\n", timer_interval_ms);
