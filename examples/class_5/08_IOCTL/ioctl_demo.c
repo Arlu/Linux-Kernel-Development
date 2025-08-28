@@ -1,11 +1,7 @@
-// #include <linux/init.h>
 #include <linux/module.h>
-// #include <linux/kernel.h>
 #include <linux/fs.h>
 #include <linux/device.h>
 #include <linux/cdev.h>
-// #include <linux/uaccess.h>
-// #include <linux/slab.h>
 #include <linux/mutex.h>
 
 #define DEVICE_NAME "ioctl_demo"
@@ -204,7 +200,6 @@ static int __init ioctl_demo_init(void)
     pr_info("IOCTL Demo: Allocated device number %d:%d\n", MAJOR(dev_number), MINOR(dev_number));
 
     // Create device class:
-    // ioctl_class = class_create(THIS_MODULE, CLASS_NAME);
     ioctl_class = class_create(CLASS_NAME);
     if (IS_ERR(ioctl_class))
     {
